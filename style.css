@@ -3,6 +3,14 @@ body {
   color: white;
 }
 
+button {
+  border: none;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 .container {
   margin: auto;
   display: flex;
@@ -19,15 +27,19 @@ body {
 }
 .Display {
   flex: 0 0 30%;
+  display: flex;
+  justify-content: right;
+  align-items: end;
+  font-size: 3rem;
+  padding: 1.5rem;
 }
 
 .Inputs {
   height: 70%;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 0.1rem 0.1rem;
-  font-size: 2rem;
 }
 
 .gray {
@@ -57,4 +69,8 @@ body {
 
 #rounded-right {
   border-radius: 0 0 0.7rem 0;
+}
+
+.two-columns {
+  grid-column: span 2;
 }
