@@ -52,6 +52,7 @@ for (let i = 0; i < numberButtons.length; i++) {
       displayValue = this.textContent
     } else if (display.textContent !== "0") {
       displayValue = display.textContent + this.textContent
+      console.log(this.textContent)
     }
 
     display.textContent = displayValue
@@ -73,7 +74,29 @@ for (let i = 0; i < functionButtons.length; i++) {
   })
 }
 
-console.log("Hello World")
+//store the display text content as first number variable after an operator button is clicked
+//as operator button is clicked, change operator variable to match operator clicked
+//as equal button is clicked, save display text content as second number and then call operate function using firstNumber, secondNumber and Operator as parameter variables.
 
-console.log(Add(firstNumber, secondNumber))
-console.log(Operate(Operator, firstNumber, secondNumber))
+for (let i = 0; i < operatorButtons.length; i++) {
+  operatorButtons[i].addEventListener("click", function () {
+    let operatorButtonText = this.textContent
+
+    if (
+      operatorButtonText === "+" ||
+      operatorButtonText === "/" ||
+      operatorButtonText === "-" ||
+      operatorButtonText === "*"
+    ) {
+      firstNumber = Number(display.textContent)
+      Operator = operatorButtonText
+      display.textContent = ""
+    } else if (operatorButtonText === "=") {
+      secondNumber = Number(display.textContent)
+      console.log(firstNumber)
+      console.log(secondNumber)
+      console.log(Operator)
+      display.textContent = Operate(Operator, firstNumber, secondNumber)
+    }
+  })
+}
