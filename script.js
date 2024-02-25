@@ -49,10 +49,8 @@ for (let i = 0; i < numberButtons.length; i++) {
 
     let displayValue = ""
     if (display.textContent === "0") {
-      displayValue = this.textContent
     } else if (display.textContent !== "0") {
       displayValue = display.textContent + this.textContent
-      console.log(this.textContent)
     }
 
     display.textContent = displayValue
@@ -81,23 +79,7 @@ for (let i = 0; i < functionButtons.length; i++) {
 for (let i = 0; i < operatorButtons.length; i++) {
   operatorButtons[i].addEventListener("click", function () {
     let operatorButtonText = this.textContent
-
-    if (
-      operatorButtonText === "+" ||
-      operatorButtonText === "/" ||
-      operatorButtonText === "-" ||
-      operatorButtonText === "*"
-    ) {
-      firstNumber = Number(display.textContent)
-      Operator = operatorButtonText
-      display.textContent = ""
-    } else if (operatorButtonText === "=") {
-      secondNumber = Number(display.textContent)
-      console.log(firstNumber)
-      console.log(secondNumber)
-      console.log(Operator)
-      display.textContent = Operate(Operator, firstNumber, secondNumber)
-    }
+    handleOperatorButtonClick(operatorButtonText)
   })
 }
 
@@ -142,5 +124,5 @@ function handleOperatorButtonClick(operatorButtonText) {
     computeAnswer(Operator, firstNumber, secondNumber)
   }
 }
-//Refactor this code into seperate functions.
-//Example: isArithmeticOperator, handleOperatorButtonClick, and functions for example saving the first, second numbers and clearing the display
+
+//Next Up: Refactor Number Button For Loop?
