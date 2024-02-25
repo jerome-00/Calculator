@@ -100,3 +100,47 @@ for (let i = 0; i < operatorButtons.length; i++) {
     }
   })
 }
+
+function isArithmeticOperator(operatorButtonText) {
+  if (
+    operatorButtonText === "+" ||
+    operatorButtonText === "/" ||
+    operatorButtonText === "-" ||
+    operatorButtonText === "*"
+  ) {
+    return true
+  }
+}
+
+function displayClear() {
+  display.textContent = ""
+}
+
+function storeFirstNumber() {
+  firstNumber = Number(display.textContent)
+}
+
+function storeSecondNumber() {
+  secondNumber = Number(display.textContent)
+}
+
+function storeOperator(operatorButtonText) {
+  Operator = operatorButtonText
+}
+
+function computeAnswer(Operator, firstNumber, secondNumber) {
+  display.textContent = Operate(Operator, firstNumber, secondNumber)
+}
+
+function handleOperatorButtonClick(operatorButtonText) {
+  if (isArithmeticOperator(operatorButtonText) === true) {
+    storeFirstNumber()
+    storeOperator(operatorButtonText)
+    displayClear()
+  } else if (operatorButtonText === "=") {
+    storeSecondNumber()
+    computeAnswer(Operator, firstNumber, secondNumber)
+  }
+}
+//Refactor this code into seperate functions.
+//Example: isArithmeticOperator, handleOperatorButtonClick, and functions for example saving the first, second numbers and clearing the display
