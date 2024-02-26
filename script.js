@@ -1,6 +1,7 @@
-var firstNumber = 1
-var secondNumber = 2
+var firstNumber = ""
+var secondNumber = ""
 var Operator = "+"
+let pairEvaluated = 0
 
 const functionButtons = document.getElementsByClassName("functionButton")
 const operatorButtons = document.getElementsByClassName("operatorButton")
@@ -48,9 +49,22 @@ for (let i = 0; i < numberButtons.length; i++) {
     //Save button inputs following
 
     let displayValue = ""
-    if (display.textContent === "0") {
+    if (
+      display.textContent === "0" ||
+      display.textContent === "+" ||
+      display.textContent === "-" ||
+      display.textContent === "*" ||
+      display.textContent === "/"
+    ) {
+      displayValue = this.textContent
     } else if (display.textContent !== "0") {
-      displayValue = display.textContent + this.textContent
+      if (pairEvaluated === 0) {
+        displayValue = display.textContent + this.textContent
+      }
+      if (pairEvaluated === 1) {
+        displayValue = this.textContent
+        pairEvaluated = 0
+      }
     }
 
     display.textContent = displayValue
@@ -118,10 +132,13 @@ function handleOperatorButtonClick(operatorButtonText) {
   if (isArithmeticOperator(operatorButtonText) === true) {
     storeFirstNumber()
     storeOperator(operatorButtonText)
+
     displayClear()
+    display.textContent = operatorButtonText
   } else if (operatorButtonText === "=") {
     storeSecondNumber()
     computeAnswer(Operator, firstNumber, secondNumber)
+    pairEvaluated = 1
   }
 }
 
