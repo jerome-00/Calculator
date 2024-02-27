@@ -62,13 +62,30 @@ for (let i = 0; i < numberButtons.length; i++) {
         displayValue = display.textContent + this.textContent
       }
       if (pairEvaluated === 1) {
-        displayValue = this.textContent
-        pairEvaluated = 0
+        if (isOperatorButton === true) {
+          displayValue = display.textContent
+          pairEvaluated = 1
+        } else if (isOperatorButton !== true) {
+          displayValue = display.textContent + this.textContent
+          pairEvaluated = 0
+        }
       }
     }
 
     display.textContent = displayValue
   })
+}
+
+function isOperatorButton() {
+  let operatorButton = display.textContent
+  if (
+    operatorButton === "+" ||
+    operatorButton === "-" ||
+    operatorButton === "*" ||
+    operatorButton === "/"
+  ) {
+    return true
+  }
 }
 
 for (let i = 0; i < functionButtons.length; i++) {
@@ -77,6 +94,8 @@ for (let i = 0; i < functionButtons.length; i++) {
     let buttonText = this.textContent
     if (buttonText === "AC") {
       displayValue = "0"
+      firstNumber = ""
+      secondNumber = ""
     } else if (buttonText === "+/-") {
       displayValue = "function not yet implemented"
     } else if (buttonText === "%") {
@@ -139,7 +158,9 @@ function handleOperatorButtonClick(operatorButtonText) {
     storeSecondNumber()
     computeAnswer(Operator, firstNumber, secondNumber)
     pairEvaluated = 1
+    console.log("=")
   }
 }
 
-//Next Up: Refactor Number Button For Loop?
+//On calling of operator, set current display text as firstNumber
+//On calling of equals sign, set current display text as secondNumber
